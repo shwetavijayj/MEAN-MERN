@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Products</title>
+</head>
+
+<body>
+    <div class="container" [hidden]="!issaved">
+        <form name="frmProduct" [formGroup]="frmProduct" (submit)="save()">
+            <div class="form-group">
+                <label for="ProductId">ProductId</label>
+                <input type="text" class="form-control" formControlName="ProductId" name="ProductId" />
+            </div>
+            <div class="form-group">
+                <label for="ProductName">ProductName</label>
+                <input type="text" class="form-control" formControlName="ProductName" name="ProductName" />
+            </div>
+            <div class="form-group">
+                <label for="CategoryName">Category</label>
+                <select class="form-control" formControlName="CategoryName" name="CategoryName">
+                    <option *ngFor="let c of categories" value="{{ c }}">{{c}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Price">ProductPrice</label>
+                <input type="text" class="form-control" formControlName="Price" name="ProductPrice" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="new" class="btn btn-default" (click)="clear()">
+                <input type="submit" value="save" class="btn btn-success">
+            </div>
+            <br />
+        </form>
+    </div>
+    <div class="container" [hidden]="issaved">
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <td *ngFor="let c of tableHeaders">{{c}}
+                    </td>
+                    <td><input type="checkbox" value="" [(ngModel)]="product.pflag" /></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let p of products" (click)="getselectedrow(p)">
+                    <td *ngFor="let c of tableHeaders">{{p[c]}}</td>
+                    <td><input type="checkbox" name="" value="" [(checked)]="product.pflag" /></td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="5">
+                        <input type="button" value="load Form" (click)="loadForm()" class="btn btn-warning">
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</body>
+
+</html>

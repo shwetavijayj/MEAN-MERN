@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Register</title>
+</head>
+
+<body>
+    <h3>Register here..</h3>
+    <div class="form-group">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <td>UserName</td>
+                <td><input type="text" name="UserName" [(ngModel)]="user.UserName" (focusout)="checkUser()" /></td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td><input type="password" name="password" [(ngModel)]="user.password" /></td>
+            </tr>
+            <tr>
+                <td>Confirm Password</td>
+                <td><input type="password" name="cpassword" [(ngModel)]="cpassword" /></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button type="submit" value="Signup" class="btn btn-success" (click)="signup()">Sign up</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>

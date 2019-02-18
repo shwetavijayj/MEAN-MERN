@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Products</title>
+</head>
+
+<body>
+    <h3 style="text-align:center">Product store</h3>
+    <div class="container">
+        <div class="form-group">
+            <input type="text" placeholder="Search.." class="form-control" [(ngModel)]="searchContentProduct" (focus)="searchIn()"
+                (focusout)="searchOut()" />
+            <input type="checkbox" value="ProductName" name="ProductName" [(ngModel)]="product.checkProdName"
+                (ngModelChange)="search()" />
+            Product Name
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="checkbox" value="categories" name="categories" [(ngModel)]="product.checkCatName"
+                (ngModelChange)="search()" /> Category
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="checkbox" value="manufacturer" name="manufacturer" [(ngModel)]="product.checkMan"
+                (ngModelChange)="search()" />
+            Manufacturer
+            <br>
+            <div [hidden]="!product.checkCatName">
+                <select name="categoryName" class="form-control" [(ngModel)]="searchContentCategory" (ngModelChange)="search()">
+                    <option *ngFor="let c of categories" value="{{ c }}">{{c}}</option>
+                </select>
+            </div>
+        </div>
+        <br><br>
+        <div [hidden]="issaved">
+            <div class="form-group">
+                <label for="ProductId">ProductId</label>
+                <input type="text" class="form-control" name="ProductId" [(ngModel)]="product.ProductId" />
+            </div>
+            <div class="form-group">
+                <label for="ProductName">ProductName</label>
+                <input type="text" class="form-control" name="ProductName" [(ngModel)]="product.ProductName" />
+            </div>
+            <div class="form-group">
+                <label for="CategoryName">Category</label>
+                <select class="form-control" [(ngModel)]="product.CategoryName">
+                    <option *ngFor="let c of categories" value="{{ c }}">{{c}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="manufacturer">Manufacturer</label>
+                <input type="text" class="form-control" name="manufacturer" [(ngModel)]="product.manufacturer" />
+            </div>
+            <div class="form-group">
+                <label for="Price">ProductPrice</label>
+                <input type="text" class="form-control" name="Price" [(ngModel)]="product.Price" />
+            </div>
+            <div class="form-group">
+                <table>
+                    <tr>
+                        <td><input type="submit" value="new" class="btn btn-default" (click)="clear()"></td>
+                        <td><input type="submit" value="save" class="btn btn-success" (click)="save()"></td>
+                        <td><input type="submit" value="update" class="btn btn-success" (click)="update()"></td>
+                        <td><input type="submit" value="delete" class="btn btn-success" (click)="delete()"></td>
+                    </tr>
+                </table>
+
+
+
+            </div>
+        </div>
+        <br />
+        <div class="container">
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <td *ngFor="let c of tableHeaders">{{c}}
+                        </td>
+                        <td><input type="checkbox" value="" [(ngModel)]="product.pflag" /></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let p of products " (click)="getselectedrow(p)">
+                        <td *ngFor="let c of tableHeaders">{{p[c]}}</td>
+                        <td><input type="checkbox" name="" value="" [(checked)]="product.pflag" /></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>

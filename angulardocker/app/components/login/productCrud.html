@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Products</title>
+</head>
+
+<body>
+    <table class="table table-striped table-bordered">
+        <tr>
+            <td>Add New Product</td>
+            <td><button class="btn btn-success" type="submit" value="New">New</button></td>
+        </tr>
+    </table>
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <td *ngFor="let c of tableHeaders">{{c}}
+                </td>
+                <td>Update</td>
+                <td>Remove</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let p of products | filter : searchContentCategory: searchContentProduct" (click)="getselectedrow(p)">
+                <td *ngFor="let c of tableHeaders">{{p[c]}}</td>
+                <td><input type="checkbox" name="" value="" [(checked)]="product.pflag" /></td>
+                <td><button class="btn btn-success" type="submit" value="update">Update</button></td>
+                <td><button class="btn btn-danger" type="submit" value="remove">Remove</button></td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+
+</html>
